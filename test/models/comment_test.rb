@@ -1,22 +1,17 @@
 # == Schema Information
 #
-# Table name: posts
+# Table name: comments
 #
 #  id         :bigint           not null, primary key
-#  title      :string
-#  visibility :string
+#  post_id    :bigint           not null
 #  user_id    :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  work_type  :string
 #
+require "test_helper"
 
-one:
-  subject: MyString
-  status: MyString
-  user_id: one
-
-two:
-  subject: MyString
-  status: MyString
-  user_id: two
+class CommentTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+end

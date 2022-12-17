@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+user = User.new(
+  email: 'artist@gmail.com',
+  password: 'mmmmmm',
+  password_confirmation: 'mmmmmm',
+  role: 'artist',
+  username: 'drewtcraft',
+  first_name: 'andrew',
+  last_name: 'craft'
+)
+user.save!
+puts user
+
+user_2 = User.new(
+  email: 'mod@gmail.com',
+  password: 'mmmmmm',
+  password_confirmation: 'mmmmmm',
+  role: 'moderator',
+  username: 'donker',
+  first_name: 'andrew',
+  last_name: 'craft'
+)
+user_2.start_following(user.id)
+user_2.save!
+puts user_2.following

@@ -1,27 +1,32 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
-  # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = if is_at_least_artist?
+               Post.all
+             else
+               Post.where(visibility: :public)
+             end
   end
 
-  # GET /posts/1 or /posts/1.json
   def show
+    @comment = @post.comments.build
+    # if @post.visibility != :public && !is_at_least_artist?
+    #   respond_to do |format|
+    #     format.html "no is for you my friend"
+    #   end
+    # end
   end
 
-  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
   def edit
   end
 
-  # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = Post.new({**post_params, user_id: 1})
 
     respond_to do |format|
       if @post.save
@@ -34,7 +39,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -65,6 +69,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:subject, :body, :status, :user_id_id, :images)
+      params.require(:post).permit(:title, :body, :visibility, :user_id, :work_type, images: [])
     end
 end

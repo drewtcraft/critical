@@ -1,22 +1,18 @@
 # == Schema Information
 #
-# Table name: posts
+# Table name: comments
 #
 #  id         :bigint           not null, primary key
-#  title      :string
-#  visibility :string
+#  post_id    :bigint           not null
 #  user_id    :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  work_type  :string
 #
 
 one:
-  subject: MyString
-  status: MyString
-  user_id: one
+  post: one
+  user: one
 
 two:
-  subject: MyString
-  status: MyString
-  user_id: two
+  post: two
+  user: two
