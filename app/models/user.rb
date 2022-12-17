@@ -18,8 +18,15 @@
 #  invited_by_type        :string
 #  invited_by_id          :bigint
 #  invitations_count      :integer          default(0)
+#  role                   :string
+#  username               :string
+#  first_name             :string
+#  last_name              :string
+#
 
 class User < ApplicationRecord
+  ROLE_OPTIONS = [:god, :mod, :artist, :spectator]
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable :confirmable
   devise :invitable, :database_authenticatable, :registerable,

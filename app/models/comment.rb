@@ -12,4 +12,7 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
   has_rich_text :body
+
+  has_many :post_tags, foreign_key: 'post_id'
+  has_many :tags, through: :post_tags
 end
